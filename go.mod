@@ -1,4 +1,4 @@
-module github.com/yoshago/my-tunnel
+module github.com/yoshago/ngrok-clone
 
 go 1.25.0
 

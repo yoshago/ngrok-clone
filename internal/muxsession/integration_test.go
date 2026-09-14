@@ -7,10 +7,10 @@ import (
 	"net"
 	"testing"
 
-	"github.com/yoshago/my-tunnel/internal/muxsession"
-	"github.com/yoshago/my-tunnel/internal/protocol"
-	"github.com/yoshago/my-tunnel/internal/testutil"
-	"github.com/yoshago/my-tunnel/internal/tlsconfig"
+	"github.com/yoshago/ngrok-clone/internal/muxsession"
+	"github.com/yoshago/ngrok-clone/internal/protocol"
+	"github.com/yoshago/ngrok-clone/internal/testutil"
+	"github.com/yoshago/ngrok-clone/internal/tlsconfig"
 )
 
 // TestHandshakeAndMuxRoundTrip stands up an in-memory mTLS listener (simulating
