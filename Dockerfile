@@ -11,6 +11,7 @@ FROM alpine:3.20
 RUN adduser -D -u 10001 relayd
 # When running as USER relayd, the mounted server-key.pem must be readable by
 # UID 10001 or a group accessible to relayd; keep its permissions non-world-readable.
+USER relayd
 WORKDIR /app
 COPY --from=build /out/relayd ./relayd
 EXPOSE 9090
