@@ -15,4 +15,5 @@ USER relayd
 EXPOSE 9090
 # certs/ is not baked into the image; mount it at runtime, e.g.:
 #   docker run -v $(pwd)/certs:/app/certs:ro ...
+# The mounted certificate files must be readable by UID 10001.
 ENTRYPOINT ["./relayd", "-addr=:9090", "-ca=certs/ca-cert.pem", "-cert=certs/server-cert.pem", "-key=certs/server-key.pem"]
