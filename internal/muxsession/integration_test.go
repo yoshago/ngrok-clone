@@ -2,10 +2,12 @@ package muxsession_test
 
 import (
 	"bytes"
+	"context"
 	"crypto/tls"
 	"io"
 	"net"
 	"testing"
+	"time"
 
 	"github.com/yoshago/ngrok-clone/internal/muxsession"
 	"github.com/yoshago/ngrok-clone/internal/protocol"
@@ -40,7 +42,10 @@ func TestHandshakeAndMuxRoundTrip(t *testing.T) {
 		serverErrCh <- runServerSide(ln)
 	}()
 
-	conn, err := tls.Dial("tcp", ln.Addr().String(), clientTLSCfg)
+	dialCtx, cancelDial := context.WithTimeout(context.Background(), 5*time.Second)
+	defer cancelDial()
+	dialer := &tls.Dialer{Config: clientTLSCfg}
+	conn, err := dialer.DialContext(dialCtx, "tcp", ln.Addr().String())
 	if err != nil {
 		t.Fatalf("dial: %v", err)
 	}
